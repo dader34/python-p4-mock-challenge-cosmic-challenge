@@ -201,16 +201,13 @@ class TestApp:
 
         with app.app_context():
             fake = Faker()
-            scientist = Scientist(
-                name=fake.name(), field_of_study=fake.sentence())
-            planet = Planet(name=fake.name(),
-                            distance_from_earth=randint(1000, 10000), nearest_star=fake.name())
+            scientist = Scientist(name=fake.name(), field_of_study=fake.sentence())
+            planet = Planet(name=fake.name(),distance_from_earth=randint(1000, 10000), nearest_star=fake.name())
 
             db.session.add_all([scientist, planet])
             db.session.commit()
 
-            mission = Mission(scientist_id=scientist.id,
-                              planet_id=planet.id, name=fake.sentence())
+            mission = Mission(scientist_id=scientist.id,planet_id=planet.id, name=fake.sentence())
             db.session.add(mission)
             db.session.commit()
 
